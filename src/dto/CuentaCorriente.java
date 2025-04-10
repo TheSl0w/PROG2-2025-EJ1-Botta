@@ -1,7 +1,7 @@
 package dto;
 
 public class CuentaCorriente extends Cuenta implements IGestionSaldo{
-    double giroDescubierto;
+
     int operaciones;
     @Override
     public boolean agregarSaldo(double monto) {
@@ -12,12 +12,17 @@ public class CuentaCorriente extends Cuenta implements IGestionSaldo{
 
     @Override
     public boolean quitarSaldo(double monto) {
-        giroDescubierto = this.saldo - monto;
-        if (Math.abs(giroDescubierto)<=this.saldo) {
-            this.saldo = this.saldo - monto;
-            operaciones = operaciones+1;
-            return true;
+        double giroDescubierto=0;
+
+        if (monto>this.saldo) {
+            giroDescubierto = this.saldo - monto;
         }
+        if (Math.abs(giroDescubierto)<=this.saldo) {
+                this.saldo = this.saldo - monto;
+                operaciones = operaciones+1;
+                return true;
+        }
+
         return false;
     }
 
