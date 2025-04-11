@@ -2,15 +2,19 @@ package dto;
 
 public class CajaDeAhorro extends Cuenta implements IGestionSaldo{
 int operaciones;
+    public CajaDeAhorro(double saldoInicial) {
+        super(saldoInicial);
+        this.operaciones = 0;
+    }
     @Override
-    public boolean agregarSaldo(double monto) {
+    public synchronized boolean agregarSaldo(double monto) {
         this.saldo = this.saldo + monto;
         operaciones = operaciones+1;
         return true;
     }
 
     @Override
-    public boolean quitarSaldo(double monto) {
+    public synchronized boolean quitarSaldo(double monto) {
         if (monto<this.saldo) {
             this.saldo = this.saldo - monto;
             operaciones = operaciones+1;
