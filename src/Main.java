@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 public class Main{
     public static void main(String[] args) {
         int totalops = 0;
-        LogicaCuenta logica = new LogicaCuenta();
+        LogicaCuenta logica = LogicaCuenta.getInstance();
         List<CompletableFuture<?>> futuros = new ArrayList<>();
         Random random = new Random();
         for (int i = 0; i<10;i++){

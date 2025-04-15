@@ -7,9 +7,20 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class LogicaCuenta {
+    private static volatile LogicaCuenta instance;
     private List<Cuenta> cuentas;
-    public LogicaCuenta() {
+    private LogicaCuenta() {
         cuentas = new ArrayList<>();
+    }
+    public static LogicaCuenta getInstance() {
+        if (instance == null) {
+            synchronized (LogicaCuenta.class) {
+                if (instance == null) {
+                    instance = new LogicaCuenta();
+                }
+            }
+        }
+        return instance;
     }
     public CompletableFuture<Boolean> agregarSaldo(int cuenta, double monto){
         if(cuenta>= 0 && cuenta<cuentas.size()){
