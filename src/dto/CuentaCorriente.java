@@ -12,7 +12,6 @@ public class CuentaCorriente extends Cuenta{
     @Override
     public CompletableFuture<Boolean> agregarSaldo(double monto) {
         return CompletableFuture.supplyAsync(()-> {
-
             this.saldo = this.saldo + monto;
             operaciones = operaciones + 1;
             return true;

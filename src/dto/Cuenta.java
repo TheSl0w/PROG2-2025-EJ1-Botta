@@ -8,7 +8,6 @@ public abstract class Cuenta implements IGestionSaldo {
     protected double saldo;
     protected final ExecutorService ejecutor = Executors.newSingleThreadExecutor();
     public Cuenta(double saldoInicial) {
-
         this.saldo = saldoInicial;
     }
     public void apagarEjecutor(){
