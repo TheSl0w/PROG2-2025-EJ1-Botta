@@ -2,7 +2,7 @@ package dto;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CajaDeAhorro extends Cuenta implements IGestionSaldo{
+public class CajaDeAhorro extends Cuenta{
 int operaciones;
     public CajaDeAhorro(double saldoInicial) {
         super(saldoInicial);

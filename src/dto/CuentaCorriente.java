@@ -2,7 +2,7 @@ package dto;
 
 import java.util.concurrent.CompletableFuture;
 
-public class CuentaCorriente extends Cuenta implements IGestionSaldo{
+public class CuentaCorriente extends Cuenta{
     private final double giroDescubierto=2000;
     int operaciones;
     public CuentaCorriente(double saldoInicial) {
