@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.concurrent.CompletableFuture;
+
 public class CajaDeAhorro extends Cuenta implements IGestionSaldo{
 int operaciones;
     public CajaDeAhorro(double saldoInicial) {
@@ -7,20 +9,24 @@ int operaciones;
         this.operaciones = 0;
     }
     @Override
-    public synchronized boolean agregarSaldo(double monto) {
-        this.saldo = this.saldo + monto;
-        operaciones = operaciones+1;
-        return true;
+    public CompletableFuture<Boolean> agregarSaldo(double monto) {
+        return CompletableFuture.supplyAsync(()-> {
+            this.saldo = this.saldo + monto;
+            operaciones = operaciones + 1;
+            return true;
+        }, ejecutor);
     }
 
     @Override
-    public synchronized boolean quitarSaldo(double monto) {
-        if (monto<this.saldo) {
-            this.saldo = this.saldo - monto;
-            operaciones = operaciones+1;
-            return true;
-        }
-        return false;
+    public CompletableFuture<Boolean> quitarSaldo(double monto) {
+        return CompletableFuture.supplyAsync(()-> {
+            if (monto < this.saldo) {
+                this.saldo = this.saldo - monto;
+                operaciones = operaciones + 1;
+                return true;
+            }
+            return false;
+        },ejecutor);
     }
 
     @Override

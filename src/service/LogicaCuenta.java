@@ -7,7 +7,8 @@ import java.util.List;
 
 public class LogicaCuenta {
     private List<Cuenta> cuentas;
-    private LogicaCuenta() {
+    public LogicaCuenta() {
+
         cuentas = new ArrayList<>();
     }
 }

@@ -1,8 +1,10 @@
 package dto;
 
+import java.util.concurrent.CompletableFuture;
+
 public interface IGestionSaldo {
-boolean agregarSaldo(double monto);
-boolean quitarSaldo(double monto);
+CompletableFuture<Boolean> agregarSaldo(double monto);
+CompletableFuture<Boolean> quitarSaldo(double monto);
 double getSaldo();
 int getOperaciones();
 }
